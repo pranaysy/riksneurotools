@@ -133,8 +133,8 @@ for sub = 1:Nsub
             CL{m}   = [CL{m} UL];
         end
         
-        % Scale leadfields to same L2 norm
-        Lscale(m) = sqrt(trace(CL{m}*CL{m}')/Nchn(m));
+        % Scale leadfields to unit norm using Frobenius norm
+        Lscale(m) = norm(CL{m}, 'fro');
         SL{m} = CL{m}/Lscale(m);
         %    figure,imagesc(corrcoef(full(SL{m}))),caxis([-1 1]),colorbar,title(mods{m}),set(gca,'XTickLabel',ROIname,'YTickLabel',ROIname)
     end
